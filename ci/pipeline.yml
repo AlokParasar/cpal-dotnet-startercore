@@ -1,0 +1,27 @@
+---
+resources:
+- name: dotnetCoreRepo
+  type: git
+  source:
+    uri: https://github.com/YOUR_GITHUB_USER_NAME/cpal-dotnet-startercore.git
+    branch: master
+- name: cfPush
+  type: cf
+  source:
+    api: YOUR_PCF_API_ENDPOINT                #<-------------- REPLACE ME
+    username: {{cf-username}}
+    password: {{cf-password}}
+    organization: YOUR_CI_USER_ORG            #<-------------- REPLACE ME
+    space: YOUR_CI_USER_SPACE                 #<-------------- REPLACE ME
+    skip_cert_check: false
+
+jobs:
+- name: PublishToPCF
+  public: true
+  plan:
+  - get: dotnetCoreRepo
+    trigger: false
+  - put: cfPush
+    params:
+      manifest: dotnetCoreRepo/manifest.yml
+      path: dotnetCoreRepo/

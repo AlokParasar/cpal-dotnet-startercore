@@ -1,0 +1,9 @@
+applications:
+- name: core
+  disk_quota: 1G
+  instances: 1
+  memory: 512M
+  buildpack: dotnet_core_buildpack
+  routes:
+  - route: core2.app.dev.digifabricpcf.com
+  stack: cflinuxfs2

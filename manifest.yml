@@ -1,0 +1,8 @@
+applications:
+- name: CoreStarter
+  disk_quota: 1G
+  instances: 1
+  memory: 512M
+  buildpack: dotnet_core_buildpack
+  random-route: true
+  stack: cflinuxfs2
